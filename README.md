@@ -1,0 +1,1 @@
+# standAoneRESOURCE_SERVER
