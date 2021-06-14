@@ -1,15 +1,14 @@
-# passwordGrant_JWTTokenstore_oauth
+# standAloneRESOURCE_SERVER
 
-First run the sql files in sql folder,which now includes creating rule ,user,oauth_access_token,oauth_referesh_token so spring security can use this.
-The Authorization and Resource Server is created.
-The token generted for the user logged in  is now stored in Database.The Respurce server uses this token and extracts the username and token.
-We are using PasswordGrant.The only difference is we are using JWTTokenstore instead of inmemory or jdbcTokenstore
+when security.oauth2.resource.jwt.key-uri=http://localhost:9092/oauth/token_key
+is configured resourse server ,it will automatically
+The spring-security on Behalf of Resourse server will automatically downloads/uses the publickey from given end point,converts the token 
+and validates the key.For validation Resourse server in JWT doesnt require UserDetailService ,bcz everything is already checked by Authorizationserver
+and so Resourceserver just needs to decode and check validity of token.
 
-The whle project is about to haveing 2 apis,get and post. 
-There are 2 users one is admin,other is user.So the Roles are created for the users.
 
-Now we configure the websecurity adapter so that
- 1. Only Admins can use post
- 2. Both Admins and users can use GET
- 
- User Logs in with email and pasword
+The Authorization and Resource server connect by
+
+1.ResourceId
+
+2.Private_public key pair
